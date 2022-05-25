@@ -7,6 +7,7 @@ import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
 import React, { useState } from "react";
 import { useTodoDispatch, useTodoNextId } from "../TodoContext";
+// import dummy from "./db/data.json";
 
 const CircleButton = styled.button`
   background: #38d9a9;
