@@ -1,12 +1,5 @@
-// 각 할 일에 대한 정보를 렌더링해주는 컴포넌트입니다.
-// 좌측에 있는 원을 누르면 할 일의 완료 여부를 toggle 할 수 있습니다.
-// 할 일이 완료됐을 땐 좌측에 체크가 나타나고 텍스트의 색상이 연해집니다.
-// 그리고, 마우스를 올리면 휴지통 아이콘이 나타나고
-// 이를 누르면 항목이 삭제됩니다.
-import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
-import { useTodoDispatch } from "../TodoContext";
 
 const Remove = styled.div`
   display: flex;
@@ -64,13 +57,34 @@ const Text = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
-  const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: "TOGGLE", id });
-  const onRemove = () => dispatch({ type: "REMOVE", id });
+  function onRemove() {
+    fetch(`http://localhost:3001/initialTodos/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        alert("삭제 완료!");
+      }
+    });
+  }
+
+  function onToggleCheck() {
+    fetch(`http://localhost:3001/initialTodos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        done: !done,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+      }
+    });
+  }
 
   return (
     <TodoItemBlock>
-      <CheckCircle done={done} onClick={onToggle}>
+      <CheckCircle onClick={onToggleCheck} done={done}>
         {done && <MdDone />}
       </CheckCircle>
       <Text done={done}>{text}</Text>
@@ -81,4 +95,4 @@ function TodoItem({ id, done, text }) {
   );
 }
 
-export default React.memo(TodoItem);
+export default TodoItem;

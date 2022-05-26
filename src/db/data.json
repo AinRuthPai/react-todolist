@@ -13,12 +13,17 @@
     {
       "id": 3,
       "text": "Context 만들기",
-      "done": false
+      "done": true
     },
     {
       "id": 4,
       "text": "기능 구현하기",
       "done": false
+    },
+    {
+      "text": "추가하기",
+      "done": false,
+      "id": 5
     }
   ]
 }

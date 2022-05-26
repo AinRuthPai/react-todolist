@@ -1,13 +1,7 @@
-// 새로운 할 일을 등록할 수 있게 해주는 컴포넌트입니다.
-// TodoTemplate 의 하단부에 초록색 원 버튼을 렌더링해주고,
-// 이를 클릭하면 할 일을 입력 할 수 있는 폼이 나타납니다.
-// 버튼을 다시 누르면 폼이 사라집니다.
-
+import { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
-import React, { useState } from "react";
-import { useTodoDispatch, useTodoNextId } from "../TodoContext";
-// import dummy from "./db/data.json";
+import { useRef } from "react";
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -22,13 +16,10 @@ const CircleButton = styled.button`
   cursor: pointer;
   width: 80px;
   height: 80px;
-  display: block;
-  align-items: center;
-  justify-content: center;
   font-size: 60px;
   position: absolute;
   left: 50%;
-  bottom: 0px;
+  bottom: 0;
   transform: translate(-50%, 50%);
   color: white;
   border-radius: 50%;
@@ -84,34 +75,33 @@ const Input = styled.input`
 
 function TodoCreate() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const textTodo = useRef();
 
-  const dispatch = useTodoDispatch();
-  const nextId = useTodoNextId();
+  function onSubmit() {
+    fetch("http://localhost:3001/initialTodos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: textTodo.current.value,
+        done: false,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        alert("추가 완료!");
+      }
+    });
+  }
 
   const onToggle = () => setOpen(!open);
-  const onChange = (e) => setValue(e.target.value);
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: "CREATE",
-      todo: {
-        id: nextId.current,
-        text: value,
-        done: false,
-      },
-    });
-    setValue("");
-    setOpen(false);
-    nextId.current += 1;
-  };
 
   return (
     <>
       {open && (
-        <InsertFormPositioner>
-          <InsertForm onSubmit={onSubmit}>
-            <Input autoFocus placeholder='할 일을 입력 후, Enter를 누르세요' onChange={onChange} value={value} />
+        <InsertFormPositioner onSubmit={onSubmit}>
+          <InsertForm>
+            <Input ref={textTodo} autoFocus placeholder='할 일을 입력 후, Enter를 누르세요' />
           </InsertForm>
         </InsertFormPositioner>
       )}
@@ -122,4 +112,4 @@ function TodoCreate() {
   );
 }
 
-export default React.memo(TodoCreate);
+export default TodoCreate;

@@ -1,27 +1,25 @@
-import "./App.css";
 import { createGlobalStyle } from "styled-components";
-import TodoTemplate from "./components/TodoTemplate";
+import TodoCreate from "./components/TodoCreate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
-import TodoCreate from "./components/TodoCreate";
-import { TodoProvider } from "./TodoContext";
+import TodoTemplate from "./components/TodoTemplate";
 
 const GlobalStyle = createGlobalStyle`
-body {
-  background: #e9ecef;
-}
+  body {
+    background: #e9ecef;
+  }
 `;
 
 function App() {
   return (
-    <TodoProvider>
+    <>
       <GlobalStyle />
       <TodoTemplate>
         <TodoHead />
         <TodoList />
         <TodoCreate />
       </TodoTemplate>
-    </TodoProvider>
+    </>
   );
 }
 
