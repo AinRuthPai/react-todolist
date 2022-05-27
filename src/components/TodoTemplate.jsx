@@ -11,8 +11,8 @@ const TodoTemplateBlock = styled.div`
 
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
 
-  margin-top: 96px;
-  margin-bottom: 32px;
+  margin-top: 70px;
+  margin-bottom: 90px;
   display: flex;
   flex-direction: column;
 `;

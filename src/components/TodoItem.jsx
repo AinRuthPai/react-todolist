@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
+import { useState } from "react";
 
 const Remove = styled.div`
   display: flex;
@@ -57,8 +58,10 @@ const Text = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
+  const [url, setUrl] = useState(`http://localhost:3001/initialTodos/${id}`);
+
   function onRemove() {
-    fetch(`http://localhost:3001/initialTodos/${id}`, {
+    fetch(url, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -68,16 +71,19 @@ function TodoItem({ id, done, text }) {
   }
 
   function onToggleCheck() {
-    fetch(`http://localhost:3001/initialTodos/${id}`, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id,
+        text,
         done: !done,
       }),
     }).then((res) => {
       if (res.ok) {
+        setUrl(url);
       }
     });
   }

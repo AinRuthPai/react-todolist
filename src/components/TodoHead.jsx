@@ -8,11 +8,18 @@ const TodoHeadBlock = styled.div`
   border-bottom: 1px solid #e9ecef;
   h1 {
     margin: 0;
+    margin-bottom: 8px;
     font-size: 36px;
     color: #343a40;
   }
   .day {
-    margin-top: 4px;
+    display: inline;
+    color: #868e96;
+    font-size: 21px;
+  }
+  .time {
+    display: inline;
+    margin-left: 8px;
     color: #868e96;
     font-size: 21px;
   }
@@ -25,11 +32,21 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
+  const today = new Date();
+  const dateString = today.toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const dayName = today.toLocaleString("ko-KR", { weekday: "long" });
+  const timeString = today.toLocaleTimeString("ko-KR");
+
   return (
     <TodoHeadBlock>
-      <h1>2019년 7월 10일</h1>
-      <div className='day'>수요일</div>
-      <div className='tasks-left'>할 일 2개 남음</div>
+      <h1>{dateString}</h1>
+      <div className='day'>{dayName}</div>
+      <div className='time'>{timeString}</div>
+      <div className='tasks-left'>할 일</div>
     </TodoHeadBlock>
   );
 }

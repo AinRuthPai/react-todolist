@@ -20,7 +20,7 @@ function TodoList() {
       .then((data) => {
         setData(data);
       });
-  }, []);
+  });
 
   return (
     <TodoListBlock>

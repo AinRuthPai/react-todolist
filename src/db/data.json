@@ -18,12 +18,17 @@
     {
       "id": 4,
       "text": "기능 구현하기",
-      "done": false
+      "done": true
     },
     {
-      "text": "추가하기",
+      "text": "시간 구현",
       "done": false,
       "id": 5
+    },
+    {
+      "text": "할 일 개수 표시",
+      "done": false,
+      "id": 6
     }
   ]
 }
