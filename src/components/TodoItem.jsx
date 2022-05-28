@@ -57,21 +57,23 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text }) {
-  const [url, setUrl] = useState(`http://localhost:3001/initialTodos/${id}`);
+function TodoItem({ id, done, text, todo }) {
+  const [isDone, setIsDone] = useState(done);
 
   function onRemove() {
-    fetch(url, {
+    fetch(`http://localhost:3001/initialTodos/${id}`, {
       method: "DELETE",
-    }).then((res) => {
-      if (res.ok) {
-        alert("삭제 완료!");
-      }
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 0,
+      }),
     });
   }
 
   function onToggleCheck() {
-    fetch(url, {
+    fetch(`http://localhost:3001/initialTodos/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -79,21 +81,22 @@ function TodoItem({ id, done, text }) {
       body: JSON.stringify({
         id,
         text,
-        done: !done,
+        done: !isDone,
       }),
     }).then((res) => {
       if (res.ok) {
-        setUrl(url);
+        setIsDone(!isDone);
       }
     });
   }
 
   return (
     <TodoItemBlock>
-      <CheckCircle onClick={onToggleCheck} done={done}>
-        {done && <MdDone />}
+      <CheckCircle onClick={onToggleCheck} done={isDone}>
+        {/* {done && <MdDone />} */}
+        {isDone === true ? <MdDone /> : done}
       </CheckCircle>
-      <Text done={done}>{text}</Text>
+      <Text done={isDone}>{text}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>

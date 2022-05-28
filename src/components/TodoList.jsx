@@ -11,21 +11,22 @@ const TodoListBlock = styled.div`
 
 function TodoList() {
   const [data, setData] = useState([]);
+  const url = `http://localhost:3001/initialTodos/`;
 
   useEffect(() => {
-    fetch(`http://localhost:3001/initialTodos`)
+    fetch(url)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setData(data);
       });
-  });
+  }, [url]);
 
   return (
     <TodoListBlock>
       {data.map((todo) => {
-        return <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} />;
+        return <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} todo={todo} />;
       })}
     </TodoListBlock>
   );

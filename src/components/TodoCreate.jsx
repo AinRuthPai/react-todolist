@@ -75,7 +75,7 @@ const Input = styled.input`
 
 function TodoCreate() {
   const [open, setOpen] = useState(false);
-  const [url, setUrl] = useState(`http://localhost:3001/initialTodos`);
+  const url = `http://localhost:3001/initialTodos`;
   const textTodo = useRef();
 
   function onSubmit() {
@@ -90,8 +90,6 @@ function TodoCreate() {
       }),
     }).then((res) => {
       if (res.ok) {
-        alert("추가 완료!");
-        setUrl(url);
       }
     });
   }
