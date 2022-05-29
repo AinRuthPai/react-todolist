@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const TodoHeadBlock = styled.div`
-  padding-top: 48px;
+  padding-top: 42px;
   padding-left: 32px;
   padding-right: 32px;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #e9ecef;
   h1 {
     margin: 0;
@@ -27,7 +27,7 @@ const TodoHeadBlock = styled.div`
   .tasks-left {
     color: #20c997;
     font-size: 18px;
-    margin-top: 40px;
+    margin-top: 20px;
     font-weight: bold;
   }
 `;

@@ -15,6 +15,8 @@ const WeatherTemplateBlock = styled.div`
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 function WeatherTemplate({ children }) {

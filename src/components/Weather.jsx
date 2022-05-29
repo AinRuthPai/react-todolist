@@ -1,13 +1,36 @@
 // dd5237e3e7a45113f1c351c16d291a57
 // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
+import { TiWeatherCloudy, TiWeatherSunny, TiWeatherShower, TiWeatherStormy, TiWeatherSnow } from "react-icons/ti";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const WeatherBlock = styled.div`
-  flex: 1;
   padding: 20px 32px;
   padding-bottom: 48px;
+  text-align: center;
+
+  h2 {
+    margin: 2rem 0;
+    font-size: 3rem;
+  }
+  h3 {
+    margin: 2rem 0;
+    font-size: 2rem;
+  }
+  p {
+    margin: 1rem 0;
+    font-size: 1.7rem;
+  }
+`;
+
+const IconsBlock = styled.div`
+  display: inline-block;
+  font-size: 10rem;
+  border-radius: 50%;
+  padding: 0 1.7rem;
+  padding-top: 0.5rem;
+  box-shadow: 4px 4px 8px 0 #ff8787;
 `;
 
 function Weather() {
@@ -26,11 +49,11 @@ function Weather() {
       })
       .then((data) => {
         setData({
-          id: data.weather[0].id,
-          currentTemp: data.main.temp,
+          //   id: data.weather[0].id,
+          currentTemp: (data.main.temp - 273.15).toFixed(1),
           city: data.name,
-          maxTemp: data.main.temp_max,
-          minTemp: data.main.temp_min,
+          maxTemp: (data.main.temp_max - 273.15).toFixed(1),
+          minTemp: (data.main.temp_min - 273.15).toFixed(1),
           main: data.weather[0].main,
         });
       })
@@ -39,23 +62,26 @@ function Weather() {
       });
   }, []);
 
-  const changeTemp = data.currentTemp - (273.15).toFixed(2);
-  const changeMaxTemp = data.maxTemp - (273.15).toFixed(2);
-  const changeMinTemp = data.minTemp - (273.15).toFixed(2);
-
   return (
     <>
       <WeatherBlock>
-        <h1>현재 날씨</h1>
-        {/* {data && ( */}
-        <div>
-          <h2>도시 : {data.city}</h2>
-          <h3>날씨 : {data.main}</h3>
-          <div>현재 온도 : {changeTemp}</div>
-          <div>최고 온도 : {changeMaxTemp}</div>
-          <div>최저 온도 : {changeMinTemp}</div>
-        </div>
-        {/* )} */}
+        <>
+          <h1>
+            <IconsBlock>
+              {data.main === "Clouds" ? <TiWeatherCloudy /> : null}
+              {data.main === "Clear" ? <TiWeatherSunny /> : null}
+              {data.main === "Thunderstorm" ? <TiWeatherStormy /> : null}
+              {data.main === "Snow" ? <TiWeatherSnow /> : null}
+              {data.main === "Rain" ? <TiWeatherShower /> : null}
+            </IconsBlock>
+          </h1>
+          <h2>{`${data.currentTemp} °C`}</h2>
+          <h3>{data.main}</h3>
+          <h3>{data.city}</h3>
+          <p>
+            today : {`${data.minTemp} °C`} / {`${data.maxTemp} °C`}
+          </p>
+        </>
       </WeatherBlock>
     </>
   );
