@@ -26,7 +26,7 @@ function TodoList() {
   return (
     <TodoListBlock>
       {data.map((todo) => {
-        return <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} todo={todo} />;
+        return <TodoItem key={todo.id} todo={todo} />;
       })}
     </TodoListBlock>
   );

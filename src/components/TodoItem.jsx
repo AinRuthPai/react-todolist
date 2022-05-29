@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Remove = styled.div`
   display: flex;
@@ -57,30 +58,36 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text, todo }) {
-  const [isDone, setIsDone] = useState(done);
+function TodoItem({ todo }) {
+  const [isDone, setIsDone] = useState(todo.done);
+  const [newTodo, setNewTodo] = useState(todo);
+
+  useEffect(() => {
+    setNewTodo(todo);
+  }, [todo]);
 
   function onRemove() {
-    fetch(`http://localhost:3001/initialTodos/${id}`, {
+    fetch(`http://localhost:3001/initialTodos/${todo.id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: 0,
-      }),
+    }).then((res) => {
+      if (res.ok) {
+        setNewTodo({
+          ...newTodo,
+          id: 0,
+        });
+      }
     });
   }
 
   function onToggleCheck() {
-    fetch(`http://localhost:3001/initialTodos/${id}`, {
+    fetch(`http://localhost:3001/initialTodos/${todo.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id,
-        text,
+        id: todo.id,
+        text: todo.text,
         done: !isDone,
       }),
     }).then((res) => {
@@ -94,9 +101,9 @@ function TodoItem({ id, done, text, todo }) {
     <TodoItemBlock>
       <CheckCircle onClick={onToggleCheck} done={isDone}>
         {/* {done && <MdDone />} */}
-        {isDone === true ? <MdDone /> : done}
+        {isDone === true ? <MdDone /> : todo.done}
       </CheckCircle>
-      <Text done={isDone}>{text}</Text>
+      <Text done={isDone}>{todo.text}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
