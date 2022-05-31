@@ -6,6 +6,9 @@ import TodoList from "./components/TodoList";
 import TodoCreate from "./components/TodoCreate";
 import WeatherTemplate from "./components/WeatherTemplate";
 import Weather from "./components/Weather";
+import BoardTemplate from "./components/BoardTemplate";
+import BoardHead from "./components/BoardHead";
+// import Wrapper from "./components/Wrapper";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,6 +39,7 @@ function App() {
       <MainHeaderBlock>
         <h1>To Do List</h1>
       </MainHeaderBlock>
+
       <WeatherTemplate>
         <Weather />
       </WeatherTemplate>
@@ -44,6 +48,10 @@ function App() {
         <TodoList />
         <TodoCreate />
       </TodoTemplate>
+
+      <BoardTemplate>
+        <BoardHead />
+      </BoardTemplate>
     </>
   );
 }

@@ -1,6 +1,3 @@
-// dd5237e3e7a45113f1c351c16d291a57
-// https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
 import { TiWeatherCloudy, TiWeatherSunny, TiWeatherShower, TiWeatherStormy, TiWeatherSnow } from "react-icons/ti";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -9,6 +6,7 @@ const WeatherBlock = styled.div`
   padding: 20px 32px;
   padding-bottom: 48px;
   text-align: center;
+  color: #343a40;
 
   h2 {
     margin: 2rem 0;
@@ -25,11 +23,11 @@ const WeatherBlock = styled.div`
 `;
 
 const IconsBlock = styled.div`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 10rem;
   border-radius: 50%;
-  padding: 0 1.7rem;
-  padding-top: 0.5rem;
   box-shadow: 4px 4px 8px 0 #ff8787;
 `;
 
@@ -60,7 +58,7 @@ function Weather() {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [api.base, api.city, api.key]);
 
   return (
     <>
