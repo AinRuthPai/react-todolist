@@ -1,14 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import TodoTemplate from "./components/TodoTemplate";
+import WeatherTemplate from "./components/WeatherTemplate";
+import BoardTemplate from "./components/BoardTemplate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
 import TodoCreate from "./components/TodoCreate";
-import WeatherTemplate from "./components/WeatherTemplate";
 import Weather from "./components/Weather";
-import BoardTemplate from "./components/BoardTemplate";
 import BoardHead from "./components/BoardHead";
-// import Wrapper from "./components/Wrapper";
+import BoardList from "./components/BoardList";
+import BoardWirtePage from "./components/BoardWritePage";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,29 +32,54 @@ const MainHeaderBlock = styled.div`
   div {
     font-size: 19px;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
+
       <MainHeaderBlock>
-        <h1>To Do List</h1>
+        <h1>BETWEEN</h1>
       </MainHeaderBlock>
 
-      <WeatherTemplate>
-        <Weather />
-      </WeatherTemplate>
-      <TodoTemplate>
-        <TodoHead />
-        <TodoList />
-        <TodoCreate />
-      </TodoTemplate>
+      <Wrapper>
+        <TodoTemplate>
+          <TodoHead />
+          <TodoList />
+          <TodoCreate />
+        </TodoTemplate>
+
+        <WeatherTemplate>
+          <Weather />
+        </WeatherTemplate>
+      </Wrapper>
 
       <BoardTemplate>
         <BoardHead />
+        <BoardList />
       </BoardTemplate>
-    </>
+
+      <Routes>
+        <Route path='/write' element={<BoardWirtePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const BoardTemplateBlock = styled.div`
-  width: 1250px;
-  height: 700px;
+export const BoardTemplateBlock = styled.div`
+  width: 96rem;
+  height: 64rem;
 
   background: white;
   border-radius: 16px;
@@ -14,7 +14,6 @@ const BoardTemplateBlock = styled.div`
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 

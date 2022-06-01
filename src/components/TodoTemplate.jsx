@@ -6,20 +6,23 @@ const TodoTemplateBlock = styled.div`
   -ms-user-select: none;
   user-select: none;
 
-  width: 512px;
-  height: 768px;
+  width: 32rem;
+  height: 48rem;
 
-  position: relative; // 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정
   background: white;
   border-radius: 16px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
-  margin: 0 10rem;
+  position: relative;
 
-  margin-top: 70px;
-  margin-bottom: 100px;
+  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 5rem;
+  }
 `;
 
 function TodoTemplate({ children }) {

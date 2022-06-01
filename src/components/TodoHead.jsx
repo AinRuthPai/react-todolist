@@ -56,7 +56,7 @@ function TodoHead() {
       <h1>{date}</h1>
       <div className='day'>{weekday}</div>
       <div className='time'>{realTime}</div>
-      <div className='tasks-left'>할 일</div>
+      <div className='tasks-left'>To Do List</div>
     </TodoHeadBlock>
   );
 }

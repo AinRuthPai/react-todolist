@@ -12,15 +12,16 @@ const CircleButton = styled.button`
     background: #20c997;
   }
 
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+
   z-index: 5;
   cursor: pointer;
   width: 80px;
   height: 80px;
   font-size: 60px;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 50%);
   color: white;
   border-radius: 50%;
   border: none;
@@ -46,9 +47,6 @@ const CircleButton = styled.button`
 
 const InsertFormPositioner = styled.div`
   width: 100%;
-  bottom: 0;
-  left: 0;
-  position: absolute;
 `;
 
 const InsertForm = styled.form`

@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const WeatherBlock = styled.div`
-  padding: 20px 32px;
-  padding-bottom: 48px;
+  padding-top: 3rem;
   text-align: center;
   color: #343a40;
 
@@ -27,8 +26,6 @@ const IconsBlock = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 10rem;
-  border-radius: 50%;
-  box-shadow: 4px 4px 8px 0 #ff8787;
 `;
 
 function Weather() {
