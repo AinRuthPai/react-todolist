@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import dummy from "../db/dummy.json";
+import dummy from "../../db/dummy.json";
 import BoardItem from "./BoardItem";
 
 const BoardListBlock = styled.div`

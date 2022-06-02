@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const BoardHeadBlock = styled.div`
+export const BoardHeadBlock = styled.div`
   width: 65%;
   padding-top: 42px;
   padding-left: 32px;
@@ -20,18 +20,6 @@ const BoardHeadBlock = styled.div`
     font-size: 32px;
     color: #343a40;
   }
-  /* button {
-    position: absolute;
-    right: 0;
-    background-color: #20c997;
-    color: white;
-    cursor: pointer;
-    font-size: 1.1rem;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    padding: 0.5rem;
-  } */
 `;
 
 const StyledLink = styled(Link)`

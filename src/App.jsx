@@ -1,16 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
-import TodoTemplate from "./components/TodoTemplate";
-import WeatherTemplate from "./components/WeatherTemplate";
-import BoardTemplate from "./components/BoardTemplate";
-import TodoHead from "./components/TodoHead";
-import TodoList from "./components/TodoList";
-import TodoCreate from "./components/TodoCreate";
-import Weather from "./components/Weather";
-import BoardHead from "./components/BoardHead";
-import BoardList from "./components/BoardList";
-import BoardWirtePage from "./components/BoardWritePage";
+import MainPage from "./components/MainPage";
+import BoardWirtePage from "./components/Board/BoardWritePage";
+import ScrollToTop from "./ScrollToTop";
+import BoardReadPage from "./components/Board/BoardReadPage";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -20,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
 const MainHeaderBlock = styled.div`
   width: 100%;
-  height: 100px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,46 +32,27 @@ const MainHeaderBlock = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 3rem;
-
-  @media screen and (max-width: 1200px) {
-    flex-direction: column;
-    align-items: center;
-  }
+const HomeLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <GlobalStyle />
 
       <MainHeaderBlock>
-        <h1>BETWEEN</h1>
+        <HomeLink to='/'>
+          <h1>BETWEEN</h1>
+        </HomeLink>
       </MainHeaderBlock>
 
-      <Wrapper>
-        <TodoTemplate>
-          <TodoHead />
-          <TodoList />
-          <TodoCreate />
-        </TodoTemplate>
-
-        <WeatherTemplate>
-          <Weather />
-        </WeatherTemplate>
-      </Wrapper>
-
-      <BoardTemplate>
-        <BoardHead />
-        <BoardList />
-      </BoardTemplate>
-
       <Routes>
+        <Route path='/' element={<MainPage />} />
         <Route path='/write' element={<BoardWirtePage />} />
+        <Route path='/:id' element={<BoardReadPage />} />
       </Routes>
     </BrowserRouter>
   );

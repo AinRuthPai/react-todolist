@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const BoardTemplateBlock = styled.div`
-  width: 96rem;
-  height: 64rem;
+  width: 92rem;
+  height: 60rem;
 
   background: white;
   border-radius: 16px;
