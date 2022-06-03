@@ -14,6 +14,7 @@ const BoardReadTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 `;
 
 const BoardReadText = styled.div`

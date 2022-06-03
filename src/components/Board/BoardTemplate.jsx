@@ -9,12 +9,14 @@ export const BoardTemplateBlock = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   margin: 0 auto;
+  overflow-y: auto;
 
-  margin-top: 70px;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 function BoardTemplate({ children }) {
