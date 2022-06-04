@@ -2,6 +2,7 @@ import BoardTemplateBlock from "./BoardTemplate";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import dummy from "../../db/dummy.json";
+import { CancelLink } from "./BoardWritePage";
 
 const BoardReadTitle = styled.div`
   width: 65%;
@@ -14,14 +15,15 @@ const BoardReadTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
 `;
 
 const BoardReadText = styled.div`
-  width: 70%;
+  flex: 1;
+  width: 90%;
   margin-top: 5rem;
   font-size: 20px;
   text-align: left;
+  word-break: break-all;
 `;
 
 function BoardReadPage() {
@@ -29,12 +31,15 @@ function BoardReadPage() {
   let { id } = useParams();
 
   return (
-    <BoardTemplateBlock>
-      <BoardReadTitle>
-        <h2>{data[id - 1].title}</h2>
-      </BoardReadTitle>
-      <BoardReadText>{data[id - 1].text}</BoardReadText>
-    </BoardTemplateBlock>
+    <>
+      <BoardTemplateBlock>
+        <BoardReadTitle>
+          <h2>{data[id - 1].title}</h2>
+        </BoardReadTitle>
+        <BoardReadText>{data[id - 1].text}</BoardReadText>
+      </BoardTemplateBlock>
+      <CancelLink to='/'>뒤로가기</CancelLink>
+    </>
   );
 }
 

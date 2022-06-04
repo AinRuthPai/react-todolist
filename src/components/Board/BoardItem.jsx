@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 
 const BoardItemBlock = styled.div`
   display: flex;
-  align-items: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  justify-content: center;
+  padding-bottom: 16px;
+  width: 100%;
+  overflow: auto;
 `;
 
 const Text = styled.div`
-  flex: 1;
-  margin-top: 0.5rem;
-  font-size: 21px;
+  font-size: 20px;
   cursor: pointer;
   border-bottom: 1px solid #e9ecef;
 `;

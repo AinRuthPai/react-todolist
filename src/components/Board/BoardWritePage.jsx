@@ -11,14 +11,14 @@ const BoardWrapperBlock = styled.div`
 `;
 
 const InputTitleBlock = styled.input`
-  width: 50vw;
+  width: 60%;
   margin-top: 2rem;
   font-size: 22px;
   border-radius: 8px;
 `;
 
 const InputTextBlock = styled.textarea`
-  width: 60vw;
+  width: 60%;
   height: 30vw;
   outline: none;
   font-size: 20px;
@@ -27,10 +27,14 @@ const InputTextBlock = styled.textarea`
   margin: 2rem 0;
 `;
 
+const BtnWrapperBlock = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const WriteBtnBlock = styled.button`
-  position: absolute;
-  left: 42%;
   margin-bottom: 2rem;
+  margin-right: 1rem;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 18px;
@@ -41,9 +45,8 @@ const WriteBtnBlock = styled.button`
   cursor: pointer;
 `;
 
-const CancelLink = styled(Link)`
-  position: absolute;
-  left: 54%;
+export const CancelLink = styled(Link)`
+  display: inline-block;
   margin-bottom: 2rem;
   padding: 12px 14px;
   border-radius: 10px;
@@ -60,12 +63,13 @@ function BoardWirtePage() {
   return (
     <>
       <BoardWrapperBlock>
-        <InputTitleBlock />
-
-        <InputTextBlock />
+        <InputTitleBlock maxLength='30' placeholder='제목을 입력하세요' />
+        <InputTextBlock placeholder='내용을 입력하세요' />
       </BoardWrapperBlock>
-      <WriteBtnBlock>작성하기</WriteBtnBlock>
-      <CancelLink to='/'>취소하기</CancelLink>
+      <BtnWrapperBlock>
+        <WriteBtnBlock>작성하기</WriteBtnBlock>
+        <CancelLink to='/'>뒤로가기</CancelLink>
+      </BtnWrapperBlock>
     </>
   );
 }

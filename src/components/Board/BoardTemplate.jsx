@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const BoardTemplateBlock = styled.div`
-  width: 92rem;
-  height: 60rem;
+  width: 80vw;
+  height: 40rem;
 
   background: white;
   border-radius: 16px;
@@ -13,10 +13,10 @@ export const BoardTemplateBlock = styled.div`
 
   margin-top: 50px;
   margin-bottom: 70px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 `;
 
 function BoardTemplate({ children }) {

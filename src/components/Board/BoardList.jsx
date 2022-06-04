@@ -6,7 +6,7 @@ import BoardItem from "./BoardItem";
 
 const BoardListBlock = styled.div`
   flex: 1;
-  width: 90%;
+  width: 80%;
   padding: 20px 32px;
   padding-bottom: 48px;
   display: flex;
