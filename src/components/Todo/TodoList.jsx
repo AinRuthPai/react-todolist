@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
@@ -9,24 +8,11 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
-function TodoList() {
-  const [data, setData] = useState([]);
-  const url = `http://localhost:3001/initialTodos/`;
-
-  useEffect(() => {
-    fetch(url)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
-      });
-  }, [url]);
-
+function TodoList({ todoData }) {
   return (
     <TodoListBlock>
-      {data.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} />;
+      {todoData.map((todoData) => {
+        return <TodoItem key={todoData.id} todoData={todoData} />;
       })}
     </TodoListBlock>
   );

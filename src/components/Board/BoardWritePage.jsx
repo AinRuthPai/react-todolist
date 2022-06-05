@@ -59,7 +59,7 @@ export const CancelLink = styled(Link)`
   cursor: pointer;
 `;
 
-function BoardWirtePage() {
+function BoardWritePage({ boardData }) {
   return (
     <>
       <BoardWrapperBlock>
@@ -74,4 +74,4 @@ function BoardWirtePage() {
   );
 }
 
-export default BoardWirtePage;
+export default BoardWritePage;

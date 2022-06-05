@@ -58,16 +58,16 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ todo }) {
-  const [isDone, setIsDone] = useState(todo.done);
-  const [newTodo, setNewTodo] = useState(todo);
+function TodoItem({ todoData }) {
+  const [isDone, setIsDone] = useState(todoData.done);
+  const [newTodo, setNewTodo] = useState(todoData);
 
   useEffect(() => {
-    setNewTodo(todo);
-  }, [todo]);
+    setNewTodo(todoData);
+  }, [todoData]);
 
   function onRemove() {
-    fetch(`http://localhost:3001/initialTodos/${todo.id}`, {
+    fetch(`http://localhost:3001/initialTodos/${todoData.id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -80,14 +80,14 @@ function TodoItem({ todo }) {
   }
 
   function onToggleCheck() {
-    fetch(`http://localhost:3001/initialTodos/${todo.id}`, {
+    fetch(`http://localhost:3001/initialTodos/${todoData.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: todo.id,
-        text: todo.text,
+        id: todoData.id,
+        text: todoData.text,
         done: !isDone,
       }),
     }).then((res) => {
@@ -101,9 +101,9 @@ function TodoItem({ todo }) {
     <TodoItemBlock>
       <CheckCircle onClick={onToggleCheck} done={isDone}>
         {/* {done && <MdDone />} */}
-        {isDone === true ? <MdDone /> : todo.done}
+        {isDone === true ? <MdDone /> : todoData.done}
       </CheckCircle>
-      <Text done={isDone}>{todo.text}</Text>
+      <Text done={isDone}>{todoData.text}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>

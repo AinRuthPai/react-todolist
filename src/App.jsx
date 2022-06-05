@@ -2,10 +2,10 @@ import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
 import MainPage from "./components/MainPage";
-import BoardWirtePage from "./components/Board/BoardWritePage";
+import BoardWritePage from "./components/Board/BoardWritePage";
 import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
-import { database } from "./Firebase";
+import useFetch from "./useFetch";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,7 +39,11 @@ const HomeLink = styled(Link)`
 `;
 
 function App() {
-  console.log(database);
+  const data = useFetch(`http://localhost:3001/board/`);
+  const boardData = [...data].reverse();
+
+  const todoData = useFetch(`http://localhost:3001/initialTodos/`);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -52,9 +56,9 @@ function App() {
       </MainHeaderBlock>
 
       <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/write' element={<BoardWirtePage />} />
-        <Route path='/:id' element={<BoardReadPage />} />
+        <Route path='/' element={<MainPage boardData={boardData} todoData={todoData} />} />
+        <Route path='/write' element={<BoardWritePage boardData={boardData} />} />
+        <Route path='/:id' element={<BoardReadPage boardData={boardData} />} />
       </Routes>
     </BrowserRouter>
   );

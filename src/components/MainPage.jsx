@@ -22,14 +22,14 @@ const WrapperBlock = styled.div`
   }
 `;
 
-function MainPage() {
+function MainPage({ boardData, todoData }) {
   return (
     <>
       <WrapperBlock>
         <TodoTemplate>
           <TodoHead />
-          <TodoList />
-          <TodoCreate />
+          <TodoList todoData={todoData} />
+          <TodoCreate todoData={todoData} />
         </TodoTemplate>
 
         <WeatherTemplate>
@@ -39,7 +39,7 @@ function MainPage() {
 
       <BoardTemplate>
         <BoardHead />
-        <BoardList />
+        <BoardList boardData={boardData} />
       </BoardTemplate>
     </>
   );

@@ -23,11 +23,11 @@ const BoardLink = styled(Link)`
   }
 `;
 
-function BoardItem({ data }) {
+function BoardItem({ boardData }) {
   return (
     <BoardItemBlock>
       <Text>
-        <BoardLink to={`/${data.id}`}>{data.title}</BoardLink>
+        <BoardLink to={`/${boardData.id}`}>{boardData.title}</BoardLink>
       </Text>
     </BoardItemBlock>
   );

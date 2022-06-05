@@ -16,9 +16,9 @@
       "done": true
     },
     {
+      "id": 7,
       "text": "DELETE 요청 시 새로고침",
-      "done": false,
-      "id": 7
+      "done": false
     },
     {
       "id": 8,

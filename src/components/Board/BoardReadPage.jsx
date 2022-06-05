@@ -25,15 +25,15 @@ const BoardReadText = styled.div`
   word-break: break-all;
 `;
 
-function BoardReadPage({ data }) {
+function BoardReadPage({ boardData }) {
   let { id } = useParams();
-  console.log(data);
+  const data = [...boardData].reverse();
 
   return (
     <>
       <BoardTemplateBlock>
-        <BoardReadTitle>{id}</BoardReadTitle>
-        <BoardReadText></BoardReadText>
+        <BoardReadTitle>{data[id - 1].title}</BoardReadTitle>
+        <BoardReadText>{data[id - 1].text}</BoardReadText>
       </BoardTemplateBlock>
       <CancelLink to='/'>뒤로가기</CancelLink>
     </>
