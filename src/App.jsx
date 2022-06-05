@@ -5,6 +5,7 @@ import MainPage from "./components/MainPage";
 import BoardWirtePage from "./components/Board/BoardWritePage";
 import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
+import { database } from "./Firebase";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -38,6 +39,7 @@ const HomeLink = styled(Link)`
 `;
 
 function App() {
+  console.log(database);
   return (
     <BrowserRouter>
       <ScrollToTop />

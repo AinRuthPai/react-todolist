@@ -1,7 +1,6 @@
 import BoardTemplateBlock from "./BoardTemplate";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import dummy from "../../db/dummy.json";
 import { CancelLink } from "./BoardWritePage";
 
 const BoardReadTitle = styled.div`
@@ -26,17 +25,15 @@ const BoardReadText = styled.div`
   word-break: break-all;
 `;
 
-function BoardReadPage() {
-  const data = dummy.board;
+function BoardReadPage({ data }) {
   let { id } = useParams();
+  console.log(data);
 
   return (
     <>
       <BoardTemplateBlock>
-        <BoardReadTitle>
-          <h2>{data[id - 1].title}</h2>
-        </BoardReadTitle>
-        <BoardReadText>{data[id - 1].text}</BoardReadText>
+        <BoardReadTitle>{id}</BoardReadTitle>
+        <BoardReadText></BoardReadText>
       </BoardTemplateBlock>
       <CancelLink to='/'>뒤로가기</CancelLink>
     </>

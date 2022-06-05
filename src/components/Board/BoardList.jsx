@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import dummy from "../../db/dummy.json";
 import BoardItem from "./BoardItem";
+import BoardReadPage from "./BoardReadPage";
 
 const BoardListBlock = styled.div`
   flex: 1;
@@ -15,19 +14,29 @@ const BoardListBlock = styled.div`
 `;
 
 function BoardList() {
-  const [data, setData] = useState(dummy.board);
+  const [data, setData] = useState([]);
+  const url = `http://localhost:3001/board/`;
 
   useEffect(() => {
-    const reverseData = [...data].reverse();
-    setData(reverseData);
-  }, []);
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const reverseData = [...data].reverse();
+        setData(reverseData);
+      });
+  }, [url]);
 
   return (
-    <BoardListBlock>
-      {data.map((data) => (
-        <BoardItem key={data.id} data={data} />
-      ))}
-    </BoardListBlock>
+    <>
+      <BoardListBlock>
+        {data.map((data) => (
+          <BoardItem key={data.id} data={data} />
+        ))}
+      </BoardListBlock>
+      <BoardReadPage data={data} />
+    </>
   );
 }
 
