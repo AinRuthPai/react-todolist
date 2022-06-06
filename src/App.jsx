@@ -57,7 +57,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<MainPage boardData={boardData} todoData={todoData} />} />
-        <Route path='/write' element={<BoardWritePage boardData={boardData} />} />
+        <Route path='/write' element={<BoardWritePage />} />
         <Route path='/:id' element={<BoardReadPage boardData={boardData} />} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const Remove = styled.div`
   display: flex;
@@ -60,22 +59,12 @@ const Text = styled.div`
 
 function TodoItem({ todoData }) {
   const [isDone, setIsDone] = useState(todoData.done);
-  const [newTodo, setNewTodo] = useState(todoData);
-
-  useEffect(() => {
-    setNewTodo(todoData);
-  }, [todoData]);
 
   function onRemove() {
     fetch(`http://localhost:3001/initialTodos/${todoData.id}`, {
       method: "DELETE",
     }).then((res) => {
-      if (res.ok) {
-        setNewTodo({
-          ...newTodo,
-          id: 0,
-        });
-      }
+      window.location.reload();
     });
   }
 

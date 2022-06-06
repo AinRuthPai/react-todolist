@@ -4,18 +4,22 @@ import { Link } from "react-router-dom";
 const BoardItemBlock = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 16px;
+  margin-bottom: 20px;
   width: 100%;
   overflow: auto;
+  position: relative;
 `;
 
 const Text = styled.div`
   font-size: 20px;
-  cursor: pointer;
+
+  width: 100%;
+  text-align: center;
   border-bottom: 1px solid #e9ecef;
 `;
 
 const BoardLink = styled(Link)`
+  cursor: pointer;
   text-decoration: none;
   color: #495057;
   &:hover {
@@ -23,10 +27,16 @@ const BoardLink = styled(Link)`
   }
 `;
 
+const TextNumber = styled.div`
+  position: absolute;
+  left: 0;
+`;
+
 function BoardItem({ boardData }) {
   return (
     <BoardItemBlock>
       <Text>
+        <TextNumber>{`No : ${boardData.id}`}</TextNumber>
         <BoardLink to={`/${boardData.id}`}>{boardData.title}</BoardLink>
       </Text>
     </BoardItemBlock>

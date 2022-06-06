@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const BoardWrapperBlock = styled.div`
   width: 100%;
@@ -27,12 +28,12 @@ const InputTextBlock = styled.textarea`
   margin: 2rem 0;
 `;
 
-const BtnWrapperBlock = styled.div`
+export const BtnWrapperBlock = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const WriteBtnBlock = styled.button`
+export const WriteBtnBlock = styled.button`
   margin-bottom: 2rem;
   margin-right: 1rem;
   padding: 12px 14px;
@@ -59,15 +60,43 @@ export const CancelLink = styled(Link)`
   cursor: pointer;
 `;
 
-function BoardWritePage({ boardData }) {
+function BoardWritePage() {
+  const titleRef = useRef();
+  const textRef = useRef();
+  const nav = useNavigate();
+  const url = `http://localhost:3001/board/`;
+
+  function postBoard() {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: titleRef.current.value,
+        text: textRef.current.value,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        nav("/");
+        window.location.reload();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   return (
     <>
       <BoardWrapperBlock>
-        <InputTitleBlock maxLength='30' placeholder='제목을 입력하세요' />
-        <InputTextBlock placeholder='내용을 입력하세요' />
+        <InputTitleBlock type='text' maxLength='30' placeholder='제목을 입력하세요' ref={titleRef} />
+        <InputTextBlock type='text' placeholder='내용을 입력하세요' ref={textRef} />
       </BoardWrapperBlock>
       <BtnWrapperBlock>
-        <WriteBtnBlock>작성하기</WriteBtnBlock>
+        <WriteBtnBlock onClick={postBoard}>작성하기</WriteBtnBlock>
         <CancelLink to='/'>뒤로가기</CancelLink>
       </BtnWrapperBlock>
     </>
