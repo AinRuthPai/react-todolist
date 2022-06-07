@@ -42,16 +42,24 @@ function BoardReadPage({ boardData }) {
   const nav = useNavigate();
   const data = [...boardData].reverse();
 
-  function onRemove() {
-    window.alert(
-      "정말 삭제하시겠습니까?",
+  const handleClick = () => {
+    nav("/write", {
+      state: id,
+    });
+  };
+
+  function onRemoveBoard() {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
       fetch(`http://localhost:3001/board/${data[id - 1].id}`, {
         method: "DELETE",
       }).then((res) => {
+        window.alert("삭제되었습니다.");
         nav("/");
         window.location.reload();
-      })
-    );
+      });
+    } else {
+      window.alert("취소되었습니다.");
+    }
   }
 
   return (
@@ -60,14 +68,14 @@ function BoardReadPage({ boardData }) {
         <BoardReadTitle>
           <h2>{data[id - 1].title}</h2>
           <Remove>
-            <MdDelete onClick={onRemove} />
+            <MdDelete onClick={onRemoveBoard} />
           </Remove>
         </BoardReadTitle>
         <BoardReadText>{data[id - 1].text}</BoardReadText>
       </BoardTemplateBlock>
 
       <BtnWrapperBlock>
-        <WriteBtnBlock>수정하기</WriteBtnBlock>
+        <WriteBtnBlock onClick={handleClick}>수정하기</WriteBtnBlock>
         <CancelLink to='/'>뒤로가기</CancelLink>
       </BtnWrapperBlock>
     </>

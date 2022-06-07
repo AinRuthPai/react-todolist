@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useRef } from "react";
 
 const BoardWrapperBlock = styled.div`
@@ -60,33 +60,62 @@ export const CancelLink = styled(Link)`
   cursor: pointer;
 `;
 
-function BoardWritePage() {
+function BoardWritePage({ data }) {
   const titleRef = useRef();
   const textRef = useRef();
   const nav = useNavigate();
   const url = `http://localhost:3001/board/`;
+  const { state } = useLocation();
 
-  function postBoard() {
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: titleRef.current.value,
-        text: textRef.current.value,
-      }),
-    })
-      .then((res) => {
-        return res.json();
+  function onPostBoard() {
+    if (state) {
+      fetch(`http://localhost:3001/board/${data[state - 1].id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: state,
+          title: titleRef.current.value,
+          text: textRef.current.value,
+        }),
       })
-      .then((data) => {
-        nav("/");
-        window.location.reload();
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          nav("/");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      return;
+    }
+    if (titleRef.current.value && textRef.current.value) {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: titleRef.current.value,
+          text: textRef.current.value,
+        }),
       })
-      .catch((e) => {
-        console.log(e);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          nav("/");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      alert("제목과 내용은 필수 입력입니다.");
+    }
   }
 
   return (
@@ -96,7 +125,7 @@ function BoardWritePage() {
         <InputTextBlock type='text' placeholder='내용을 입력하세요' ref={textRef} />
       </BoardWrapperBlock>
       <BtnWrapperBlock>
-        <WriteBtnBlock onClick={postBoard}>작성하기</WriteBtnBlock>
+        <WriteBtnBlock onClick={onPostBoard}>작성하기</WriteBtnBlock>
         <CancelLink to='/'>뒤로가기</CancelLink>
       </BtnWrapperBlock>
     </>

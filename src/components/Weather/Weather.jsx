@@ -26,6 +26,7 @@ const IconsBlock = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 10rem;
+  margin-top: 5rem;
 `;
 
 function Weather() {
