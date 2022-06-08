@@ -13,17 +13,12 @@
     {
       "id": 5,
       "text": "시간 구현",
-      "done": true
+      "done": false
     },
     {
       "id": 7,
       "text": "DELETE 요청 시 새로고침",
-      "done": true
-    },
-    {
-      "id": 8,
-      "text": "체크 클릭 시 useState 이용해서 리렌더링",
-      "done": true
+      "done": false
     },
     {
       "id": 9,
@@ -33,84 +28,34 @@
     {
       "id": 10,
       "text": "날씨 컴포넌트 디자인",
-      "done": true
+      "done": false
     },
     {
       "id": 11,
       "text": "아래에 crud 게시판 만들기",
-      "done": false
+      "done": true
     }
   ],
   "board": [
     {
       "id": 1,
-      "title": "프로젝트 생성하기",
+      "title": "안녕하세요!",
       "text": "내용1"
     },
     {
       "id": 2,
-      "title": "프로젝트 생성하기2",
+      "title": "crud 게시판입니다",
       "text": "내용2"
     },
     {
       "id": 3,
-      "title": "프로젝트 생성하기3",
+      "title": "반갑습니다",
       "text": "내용3"
     },
     {
       "id": 4,
-      "title": "프로젝트 생성하기4",
-      "text": "내용4"
-    },
-    {
-      "id": 5,
-      "title": "프로젝트 생성하기5",
-      "text": "내용5"
-    },
-    {
-      "id": 6,
-      "title": "dddddddddddddddddddddddddddddd",
-      "text": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-    },
-    {
-      "title": "ㅇㅇㅇㅇㅇ",
-      "text": "ㅇㅇㅇㅇ",
-      "id": 7
-    },
-    {
-      "title": "ㄹㄹㄹㄹㄹ",
-      "text": "ㄹㄹㄹㄹㄹㄹㄹㄹ",
-      "id": 8
-    },
-    {
-      "title": "ㅇㅇㅇㅇㅇㅇㅇ",
-      "text": "ㅇㅇㅇㅇㅇㅇㅇㅇ",
-      "id": 9
-    },
-    {
-      "title": "빈 문자열 테스트",
-      "text": "빈 문자열 테스트",
-      "id": 10
-    },
-    {
-      "id": 11,
-      "title": "ㅇㄹㅇㄹ",
-      "text": "ㅇㄹㅇㄹ"
-    },
-    {
-      "title": "ㄱ",
-      "text": "ㄴ",
-      "id": 12
-    },
-    {
-      "id": 13,
-      "title": "456",
-      "text": "456"
-    },
-    {
-      "id": 14,
-      "title": "123333333333",
-      "text": "12333333333333"
+      "title": "123",
+      "text": "123"
     }
   ]
 }

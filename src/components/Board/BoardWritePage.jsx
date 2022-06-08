@@ -68,29 +68,31 @@ function BoardWritePage({ data }) {
   const { state } = useLocation();
 
   function onPostBoard() {
-    if (state) {
-      fetch(`http://localhost:3001/board/${data[state - 1].id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: state,
-          title: titleRef.current.value,
-          text: textRef.current.value,
-        }),
-      })
-        .then((res) => {
-          return res.json();
+    if (titleRef.current.value && textRef.current.value) {
+      if (state) {
+        fetch(`http://localhost:3001/board/${data[state - 1].id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: state,
+            title: titleRef.current.value,
+            text: textRef.current.value,
+          }),
         })
-        .then((data) => {
-          nav("/");
-          window.location.reload();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-      return;
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            nav("/");
+            window.location.reload();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        return;
+      }
     }
     if (titleRef.current.value && textRef.current.value) {
       fetch(url, {

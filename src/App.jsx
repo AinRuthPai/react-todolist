@@ -9,6 +9,7 @@ import useFetch from "./useFetch";
 
 const GlobalStyle = createGlobalStyle`
   body {
+    margin: 0;
     background: #e9ecef;
   }
 `;
