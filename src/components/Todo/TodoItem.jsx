@@ -3,12 +3,10 @@ import { MdDone, MdDelete } from "react-icons/md";
 import { useState } from "react";
 
 const Remove = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
+  margin-left: 5px;
   &:hover {
     color: #ff6b6b;
   }
@@ -17,12 +15,11 @@ const Remove = styled.div`
 
 const TodoItemBlock = styled.div`
   display: flex;
-  align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
   &:hover {
     ${Remove} {
-      display: initial;
+      display: inline-block;
     }
   }
 `;
@@ -65,6 +62,7 @@ function TodoItem({ todoData }) {
       method: "DELETE",
     }).then((res) => {
       window.location.reload();
+      return res.json();
     });
   }
 
@@ -90,7 +88,7 @@ function TodoItem({ todoData }) {
     <TodoItemBlock>
       <CheckCircle onClick={onToggleCheck} done={isDone}>
         {/* {done && <MdDone />} */}
-        {isDone === true ? <MdDone /> : todoData.done}
+        {isDone === true ? <MdDone /> : null}
       </CheckCircle>
       <Text done={isDone}>{todoData.text}</Text>
       <Remove onClick={onRemove}>

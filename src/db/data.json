@@ -13,12 +13,12 @@
     {
       "id": 5,
       "text": "시간 구현",
-      "done": false
+      "done": true
     },
     {
       "id": 7,
       "text": "DELETE 요청 시 새로고침",
-      "done": false
+      "done": true
     },
     {
       "id": 9,
@@ -28,12 +28,12 @@
     {
       "id": 10,
       "text": "날씨 컴포넌트 디자인",
-      "done": false
+      "done": true
     },
     {
       "id": 11,
       "text": "아래에 crud 게시판 만들기",
-      "done": true
+      "done": false
     }
   ],
   "board": [
