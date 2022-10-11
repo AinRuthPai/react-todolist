@@ -12,7 +12,6 @@ const BoardItemBlock = styled.div`
 
 const Text = styled.div`
   font-size: 20px;
-
   width: 100%;
   text-align: center;
   border-bottom: 1px solid #e9ecef;

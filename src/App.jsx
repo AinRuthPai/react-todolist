@@ -5,6 +5,7 @@ import MainPage from "./components/MainPage";
 import BoardWritePage from "./components/Board/BoardWritePage";
 import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
+import Login from "./components/Login";
 import useFetch from "./useFetch";
 
 const GlobalStyle = createGlobalStyle`
@@ -16,10 +17,10 @@ const GlobalStyle = createGlobalStyle`
 
 const MainHeaderBlock = styled.div`
   width: 100%;
-  height: 70px;
+  height: 60px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   h1 {
@@ -36,7 +37,16 @@ const MainHeaderBlock = styled.div`
 
 const HomeLink = styled(Link)`
   text-decoration: none;
+  font-size: 24px;
+  font-weight: 800;
   color: black;
+`;
+
+const LoginLink = styled(Link)`
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  margin-left: 20px;
 `;
 
 function App() {
@@ -51,15 +61,15 @@ function App() {
       <GlobalStyle />
 
       <MainHeaderBlock>
-        <HomeLink to='/'>
-          <h1>BETWEEN</h1>
-        </HomeLink>
+        <HomeLink to='/'>BETWEEN</HomeLink>
+        <LoginLink to='/login'>Login</LoginLink>
       </MainHeaderBlock>
 
       <Routes>
         <Route path='/' element={<MainPage boardData={boardData} todoData={todoData} />} />
         <Route path='/write' element={<BoardWritePage data={data} />} />
         <Route path='/:id' element={<BoardReadPage boardData={boardData} />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
