@@ -29,8 +29,6 @@ const StyledLink = styled(Link)`
   color: white;
   cursor: pointer;
   font-size: 1.1rem;
-  outline: none;
-  border: none;
   border-radius: 10px;
   padding: 0.5rem;
   text-decoration: none;

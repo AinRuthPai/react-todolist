@@ -1,19 +1,28 @@
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA8_qj5Gv3_4lcEFrJF0y_yC1nDhXXE0Dc",
-  authDomain: "logintest-2ea37.firebaseapp.com",
-  projectId: "logintest-2ea37",
-  storageBucket: "logintest-2ea37.appspot.com",
-  messagingSenderId: "993631288666",
-  appId: "1:993631288666:web:cf840b803a333ba6158763",
-  measurementId: "G-54PG8S62M5",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// const analytics = getAnalytics(app);
 
-export { app, auth };
+function handleGoogleLogout() {
+  signOut(auth)
+    .then(() => {
+      console.log("Logout success!");
+      console.log(auth);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export { app, auth, handleGoogleLogout };

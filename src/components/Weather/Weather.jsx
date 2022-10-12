@@ -33,7 +33,7 @@ function Weather() {
   const [data, setData] = useState({});
 
   const api = {
-    key: process.env.REACT_APP_API_KEY,
+    key: process.env.REACT_APP_WEATHER_API_KEY,
     base: "https://api.openweathermap.org/data/2.5/",
     city: "seoul",
   };

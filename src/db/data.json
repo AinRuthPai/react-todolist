@@ -33,7 +33,7 @@
     {
       "id": 11,
       "text": "아래에 crud 게시판 만들기",
-      "done": false
+      "done": true
     }
   ],
   "board": [
@@ -56,6 +56,11 @@
       "id": 4,
       "title": "123",
       "text": "123"
+    },
+    {
+      "title": "게시판",
+      "text": "게시판",
+      "id": 5
     }
   ]
 }

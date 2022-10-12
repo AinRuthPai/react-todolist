@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BoardTemplateBlock = styled.div`
-  width: 80vw;
+  width: 90%;
   height: 40rem;
 
   background: white;

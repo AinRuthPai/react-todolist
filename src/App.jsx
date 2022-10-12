@@ -1,25 +1,32 @@
-import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import MainPage from "./components/MainPage";
 import BoardWritePage from "./components/Board/BoardWritePage";
 import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
-import Login from "./components/Login";
 import useFetch from "./useFetch";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, handleGoogleLogout } from "./fbase";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 auto;
+    width: 80%;
     background: #e9ecef;
   }
 `;
 
 const MainHeaderBlock = styled.div`
-  width: 100%;
+  position: relative;
+  width: 80%;
   height: 60px;
+  margin: 0 auto;
+  margin-top: 8px;
+  border-radius: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
@@ -28,6 +35,15 @@ const MainHeaderBlock = styled.div`
   }
   div {
     font-size: 19px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+  }
+  ul > li {
+    margin-left: 32px;
   }
 
   @media screen and (max-width: 768px) {
@@ -42,11 +58,17 @@ const HomeLink = styled(Link)`
   color: black;
 `;
 
-const LoginLink = styled(Link)`
-  text-decoration: none;
-  font-size: 16px;
-  color: black;
-  margin-left: 20px;
+const LoginButton = styled.button`
+  position: absolute;
+  right: 0;
+  top: 12px;
+  background-color: #20c997;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+  border: none;
 `;
 
 function App() {
@@ -55,6 +77,20 @@ function App() {
 
   const todoData = useFetch(`http://localhost:3001/initialTodos/`);
 
+  const [userData, setUserData] = useState(null);
+
+  function handleGoogleLogin() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        setUserData(data.user);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -62,14 +98,19 @@ function App() {
 
       <MainHeaderBlock>
         <HomeLink to='/'>BETWEEN</HomeLink>
-        <LoginLink to='/login'>Login</LoginLink>
+        <ul>
+          <li>
+            {userData ? null : <LoginButton onClick={handleGoogleLogin}>New Account / Login</LoginButton>}
+            {userData ? <LoginButton onClick={handleGoogleLogout}>LogOut</LoginButton> : null}
+            {userData ? `${userData.displayName} 님 환영합니다!` : null}
+          </li>
+        </ul>
       </MainHeaderBlock>
 
       <Routes>
         <Route path='/' element={<MainPage boardData={boardData} todoData={todoData} />} />
         <Route path='/write' element={<BoardWritePage data={data} />} />
         <Route path='/:id' element={<BoardReadPage boardData={boardData} />} />
-        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
