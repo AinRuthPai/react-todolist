@@ -6,8 +6,7 @@ import BoardWritePage from "./components/Board/BoardWritePage";
 import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
 import useFetch from "./useFetch";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, handleGoogleLogout } from "./fbase";
+import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
@@ -74,9 +73,9 @@ const LoginButton = styled.button`
 function App() {
   const data = useFetch(`http://localhost:3001/board/`);
   const boardData = [...data].reverse();
-
   const todoData = useFetch(`http://localhost:3001/initialTodos/`);
 
+  const auth = getAuth();
   const [userData, setUserData] = useState(null);
 
   function handleGoogleLogin() {
@@ -84,7 +83,18 @@ function App() {
     signInWithPopup(auth, provider)
       .then((data) => {
         setUserData(data.user);
-        console.log(data);
+        alert("로그인 완료!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleGoogleLogout() {
+    signOut(auth)
+      .then(() => {
+        setUserData(null);
+        alert("로그아웃 완료!");
       })
       .catch((err) => {
         console.log(err);
@@ -102,7 +112,7 @@ function App() {
           <li>
             {userData ? null : <LoginButton onClick={handleGoogleLogin}>New Account / Login</LoginButton>}
             {userData ? <LoginButton onClick={handleGoogleLogout}>LogOut</LoginButton> : null}
-            {userData ? `${userData.displayName} 님 환영합니다!` : null}
+            {userData ? userData.displayName : null}
           </li>
         </ul>
       </MainHeaderBlock>

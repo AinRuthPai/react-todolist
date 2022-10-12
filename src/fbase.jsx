@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -11,18 +10,4 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-function handleGoogleLogout() {
-  signOut(auth)
-    .then(() => {
-      console.log("Logout success!");
-      console.log(auth);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-export { app, auth, handleGoogleLogout };
+export const app = initializeApp(firebaseConfig);
