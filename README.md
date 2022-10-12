@@ -1,7 +1,5 @@
 # React.JS를 이용하여 To do List, 게시판, 날씨 앱 만들기
 
-![문제점 및 개선 방향](./trouble.md)
-
 ## 메인 페이지
 
 ![main](/src/img/between-main.png)
@@ -30,3 +28,5 @@
 ## 글 작성 시 제목, 본문 필수 입력
 
 ![Board](/src/img/board-empty-input.gif)
+
+![문제점 및 개선 방향](./trouble.md)
