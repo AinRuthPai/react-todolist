@@ -1,33 +1,35 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { auth } from "./fbase";
+import { useState } from "react";
+import useFetch from "./useFetch";
+import ScrollToTop from "./ScrollToTop";
 import MainPage from "./components/MainPage";
 import BoardWritePage from "./components/Board/BoardWritePage";
-import ScrollToTop from "./ScrollToTop";
 import BoardReadPage from "./components/Board/BoardReadPage";
-import useFetch from "./useFetch";
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
-import { useState } from "react";
+import WeatherTemplate from "./components/Weather/WeatherTemplate";
+import Weather from "./components/Weather/Weather";
+import BoardTemplate from "./components/Board/BoardTemplate";
+import BoardHead from "./components/Board/BoardHead";
+import BoardList from "./components/Board/BoardList";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0 auto;
-    width: 80%;
-    background: #e9ecef;
+    margin: 0;
+    background: #393F47;
   }
 `;
 
 const MainHeaderBlock = styled.div`
   position: relative;
-  width: 80%;
+  width: 100%;
   height: 60px;
-  margin: 0 auto;
-  margin-top: 8px;
-  border-radius: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0.5);
 
   h1 {
     font-size: 28px;
@@ -40,9 +42,17 @@ const MainHeaderBlock = styled.div`
     list-style: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
   }
   ul > li {
     margin-left: 32px;
+    color: white;
+  }
+
+  li:hover {
+    transform: scale(1.02);
+    transition: 0.1s ease-in;
   }
 
   @media screen and (max-width: 768px) {
@@ -54,13 +64,16 @@ const HomeLink = styled(Link)`
   text-decoration: none;
   font-size: 24px;
   font-weight: 800;
-  color: black;
+  color: white;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
 `;
 
 const LoginButton = styled.button`
-  position: absolute;
-  right: 0;
-  top: 12px;
   background-color: #20c997;
   color: white;
   cursor: pointer;
@@ -75,7 +88,6 @@ function App() {
   const boardData = [...data].reverse();
   const todoData = useFetch(`http://localhost:3001/initialTodos/`);
 
-  const auth = getAuth();
   const [userData, setUserData] = useState(null);
 
   function handleGoogleLogin() {
@@ -83,7 +95,7 @@ function App() {
     signInWithPopup(auth, provider)
       .then((data) => {
         setUserData(data.user);
-        alert("로그인 완료!");
+        sessionStorage.setItem("uid", data.user.uid);
       })
       .catch((err) => {
         console.log(err);
@@ -94,7 +106,7 @@ function App() {
     signOut(auth)
       .then(() => {
         setUserData(null);
-        alert("로그아웃 완료!");
+        sessionStorage.removeItem("uid");
       })
       .catch((err) => {
         console.log(err);
@@ -108,17 +120,44 @@ function App() {
 
       <MainHeaderBlock>
         <HomeLink to='/'>BETWEEN</HomeLink>
+
         <ul>
+          <li>
+            <NavLink to='/'>To Do List</NavLink>
+          </li>
+          <li>
+            <NavLink to='weather'>Weather</NavLink>
+          </li>
+          <li>
+            <NavLink to='board'>Board</NavLink>
+          </li>
+          <li> {userData ? `WELCOME ${userData.displayName} !` : null}</li>
           <li>
             {userData ? null : <LoginButton onClick={handleGoogleLogin}>New Account / Login</LoginButton>}
             {userData ? <LoginButton onClick={handleGoogleLogout}>LogOut</LoginButton> : null}
-            {userData ? userData.displayName : null}
           </li>
         </ul>
       </MainHeaderBlock>
 
       <Routes>
-        <Route path='/' element={<MainPage boardData={boardData} todoData={todoData} />} />
+        <Route path='/' element={<MainPage todoData={todoData} />} />
+        <Route
+          path='weather'
+          element={
+            <WeatherTemplate>
+              <Weather></Weather>
+            </WeatherTemplate>
+          }
+        />
+        <Route
+          path='board'
+          element={
+            <BoardTemplate>
+              <BoardHead />
+              <BoardList boardData={boardData} />
+            </BoardTemplate>
+          }
+        />
         <Route path='/write' element={<BoardWritePage data={data} />} />
         <Route path='/:id' element={<BoardReadPage boardData={boardData} />} />
       </Routes>

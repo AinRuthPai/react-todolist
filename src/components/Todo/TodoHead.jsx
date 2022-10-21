@@ -11,7 +11,7 @@ const TodoHeadBlock = styled.div`
     margin: 0;
     margin-bottom: 8px;
     font-size: 36px;
-    color: #343a40;
+    color: white;
   }
   .day {
     display: inline;
@@ -21,11 +21,11 @@ const TodoHeadBlock = styled.div`
   .time {
     display: inline;
     margin-left: 8px;
-    color: #868e96;
+    color: white;
     font-size: 21px;
   }
   .tasks-left {
-    color: #20c997;
+    color: white;
     font-size: 18px;
     margin-top: 20px;
     font-weight: bold;

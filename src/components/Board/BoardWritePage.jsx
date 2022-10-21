@@ -85,7 +85,7 @@ function BoardWritePage({ data }) {
             return res.json();
           })
           .then((data) => {
-            nav("/");
+            nav("/board");
             window.location.reload();
           })
           .catch((e) => {
@@ -109,7 +109,7 @@ function BoardWritePage({ data }) {
           return res.json();
         })
         .then((data) => {
-          nav("/");
+          nav("/board");
           window.location.reload();
         })
         .catch((e) => {
@@ -128,7 +128,7 @@ function BoardWritePage({ data }) {
       </BoardWrapperBlock>
       <BtnWrapperBlock>
         <WriteBtnBlock onClick={onPostBoard}>작성하기</WriteBtnBlock>
-        <CancelLink to='/'>뒤로가기</CancelLink>
+        <CancelLink to='/board'>뒤로가기</CancelLink>
       </BtnWrapperBlock>
     </>
   );

@@ -50,7 +50,7 @@ const InsertFormPositioner = styled.div`
 `;
 
 const InsertForm = styled.form`
-  background: #f8f9fa;
+  background: #393f47;
   padding-left: 32px;
   padding-top: 32px;
   padding-right: 32px;
@@ -62,6 +62,7 @@ const InsertForm = styled.form`
 `;
 
 const Input = styled.input`
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #dee2e6;

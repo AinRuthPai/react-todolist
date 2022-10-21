@@ -8,7 +8,6 @@ export const BoardHeadBlock = styled.div`
   padding-right: 32px;
   padding-bottom: 20px;
   text-align: center;
-  border-bottom: 1px solid #e9ecef;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +17,7 @@ export const BoardHeadBlock = styled.div`
     margin: 0;
     margin-bottom: 8px;
     font-size: 32px;
-    color: #343a40;
+    color: white;
   }
 `;
 

@@ -9,9 +9,9 @@ const TodoTemplateBlock = styled.div`
   width: 32rem;
   height: 48rem;
 
-  background: white;
+  background: #393f47;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0.5);
 
   position: relative;
 

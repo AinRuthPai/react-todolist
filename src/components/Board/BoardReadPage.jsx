@@ -54,7 +54,7 @@ function BoardReadPage({ boardData }) {
         method: "DELETE",
       }).then((res) => {
         window.alert("삭제되었습니다.");
-        nav("/");
+        nav("/board");
         window.location.reload();
       });
     } else {
@@ -76,7 +76,7 @@ function BoardReadPage({ boardData }) {
 
       <BtnWrapperBlock>
         <WriteBtnBlock onClick={handleClick}>수정하기</WriteBtnBlock>
-        <CancelLink to='/'>뒤로가기</CancelLink>
+        <CancelLink to='/board'>뒤로가기</CancelLink>
       </BtnWrapperBlock>
     </>
   );

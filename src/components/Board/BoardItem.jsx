@@ -14,13 +14,14 @@ const Text = styled.div`
   font-size: 20px;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 6px;
 `;
 
 const BoardLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  color: #495057;
+  color: white;
   &:hover {
     color: #38d9a9;
   }

@@ -46,7 +46,7 @@ const CheckCircle = styled.div`
 const Text = styled.div`
   flex: 1;
   font-size: 21px;
-  color: #495057;
+  color: #868e96;
   ${(props) =>
     props.done &&
     css`

@@ -1,11 +1,13 @@
 import { TiWeatherCloudy, TiWeatherSunny, TiWeatherShower, TiWeatherStormy, TiWeatherSnow } from "react-icons/ti";
+import { BsFillCloudFogFill } from "react-icons/bs";
+import { RiMistLine } from "react-icons/ri";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const WeatherBlock = styled.div`
   padding-top: 3rem;
   text-align: center;
-  color: #343a40;
+  color: white;
 
   h2 {
     margin: 2rem 0;
@@ -15,9 +17,15 @@ const WeatherBlock = styled.div`
     margin: 2rem 0;
     font-size: 2rem;
   }
+
+  h4 {
+    color: #868e96;
+    font-size: 1.6rem;
+  }
+
   p {
     margin: 1rem 0;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -69,11 +77,13 @@ function Weather() {
               {data.main === "Thunderstorm" ? <TiWeatherStormy /> : null}
               {data.main === "Snow" ? <TiWeatherSnow /> : null}
               {data.main === "Rain" ? <TiWeatherShower /> : null}
+              {data.main === "Fog" ? <BsFillCloudFogFill /> : null}
+              {data.main === "Mist" ? <RiMistLine /> : null}
             </IconsBlock>
           </h1>
           <h2>{`${data.currentTemp} °C`}</h2>
           <h3>{data.main}</h3>
-          <h3>{data.city}</h3>
+          <h4>{data.city}</h4>
           <p>
             today : {`${data.minTemp} °C`} / {`${data.maxTemp} °C`}
           </p>
