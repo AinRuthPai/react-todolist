@@ -57,6 +57,10 @@ const Text = styled.div`
 function TodoItem({ todoData }) {
   const [isDone, setIsDone] = useState(todoData.done);
 
+  // useEffect(() => {
+  //   onToggleCheck();
+  // }, [isDone]);
+
   function onRemove() {
     fetch(`http://localhost:3001/initialTodos/${todoData.id}`, {
       method: "DELETE",
