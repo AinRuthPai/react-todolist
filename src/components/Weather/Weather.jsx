@@ -3,38 +3,12 @@ import { BsFillCloudFogFill } from "react-icons/bs";
 import { RiMistLine } from "react-icons/ri";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-
-const WeatherBlock = styled.div`
-  padding-top: 3rem;
-  text-align: center;
-  color: white;
-
-  h2 {
-    margin: 2rem 0;
-    font-size: 3rem;
-  }
-  h3 {
-    margin: 2rem 0;
-    font-size: 2rem;
-  }
-
-  h4 {
-    color: #868e96;
-    font-size: 1.6rem;
-  }
-
-  p {
-    margin: 1rem 0;
-    font-size: 1.5rem;
-  }
-`;
+import { TemplateBlock } from "../Todo/TodoTemplate";
+import { WrapperBlock } from "../MainPage";
 
 const IconsBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 10rem;
-  margin-top: 5rem;
+  margin: 30px;
+  font-size: 200px;
 `;
 
 function Weather() {
@@ -53,7 +27,6 @@ function Weather() {
       })
       .then((data) => {
         setData({
-          //   id: data.weather[0].id,
           currentTemp: (data.main.temp - 273.15).toFixed(1),
           city: data.name,
           maxTemp: (data.main.temp_max - 273.15).toFixed(1),
@@ -61,35 +34,33 @@ function Weather() {
           main: data.weather[0].main,
         });
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error);
       });
   }, [api.base, api.city, api.key]);
 
   return (
-    <>
-      <WeatherBlock>
-        <>
-          <h1>
-            <IconsBlock>
-              {data.main === "Clouds" ? <TiWeatherCloudy /> : null}
-              {data.main === "Clear" ? <TiWeatherSunny /> : null}
-              {data.main === "Thunderstorm" ? <TiWeatherStormy /> : null}
-              {data.main === "Snow" ? <TiWeatherSnow /> : null}
-              {data.main === "Rain" ? <TiWeatherShower /> : null}
-              {data.main === "Fog" ? <BsFillCloudFogFill /> : null}
-              {data.main === "Mist" ? <RiMistLine /> : null}
-            </IconsBlock>
-          </h1>
-          <h2>{`${data.currentTemp} °C`}</h2>
-          <h3>{data.main}</h3>
-          <h4>{data.city}</h4>
-          <p>
-            today : {`${data.minTemp} °C`} / {`${data.maxTemp} °C`}
-          </p>
-        </>
-      </WeatherBlock>
-    </>
+    <WrapperBlock>
+      <TemplateBlock>
+        <h1>
+          <IconsBlock>
+            {data.main === "Clouds" ? <TiWeatherCloudy /> : null}
+            {data.main === "Clear" ? <TiWeatherSunny /> : null}
+            {data.main === "Thunderstorm" ? <TiWeatherStormy /> : null}
+            {data.main === "Snow" ? <TiWeatherSnow /> : null}
+            {data.main === "Rain" ? <TiWeatherShower /> : null}
+            {data.main === "Fog" ? <BsFillCloudFogFill /> : null}
+            {data.main === "Mist" ? <RiMistLine /> : null}
+          </IconsBlock>
+        </h1>
+        <h2>{`${data.currentTemp} °C`}</h2>
+        <h3>{data.main}</h3>
+        <h4>{data.city}</h4>
+        <p>
+          today : {`${data.minTemp} °C`} / {`${data.maxTemp} °C`}
+        </p>
+      </TemplateBlock>
+    </WrapperBlock>
   );
 }
 

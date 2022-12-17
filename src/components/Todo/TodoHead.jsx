@@ -1,62 +1,55 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const TodoHeadBlock = styled.div`
-  padding-top: 42px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 20px;
+  padding-top: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #e9ecef;
+  width: 80%;
+
   h1 {
     margin: 0;
     margin-bottom: 8px;
-    font-size: 36px;
-    color: white;
+    font-size: 20px;
   }
   .day {
     display: inline;
     color: #868e96;
-    font-size: 21px;
+    font-size: 18px;
   }
-  .time {
+  /* .time {
     display: inline;
     margin-left: 8px;
-    color: white;
-    font-size: 21px;
-  }
-  .tasks-left {
-    color: white;
     font-size: 18px;
-    margin-top: 20px;
-    font-weight: bold;
-  }
+  } */
 `;
 
 function TodoHead() {
   const [time, setTime] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTime(new Date());
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
-  const date = time.toLocaleString("ko-KR", {
+  const date = time.toLocaleString("en-EN", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 
-  const weekday = time.toLocaleString("ko-KR", { weekday: "long" });
-  const realTime = time.toLocaleTimeString();
+  const weekday = time.toLocaleString("en-EN", { weekday: "long" });
+  // const realTime = time.toLocaleTimeString();
 
   return (
     <TodoHeadBlock>
       <h1>{date}</h1>
-      <div className='day'>{weekday}</div>
-      <div className='time'>{realTime}</div>
-      <div className='tasks-left'>To Do List</div>
+      <div className='day'>{weekday.toUpperCase()}</div>
+      {/* <div className='time'>{realTime}</div> */}
     </TodoHeadBlock>
   );
 }

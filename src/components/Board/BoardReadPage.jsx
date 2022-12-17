@@ -2,7 +2,7 @@ import BoardTemplateBlock from "./BoardTemplate";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import { BtnWrapperBlock, WriteBtnBlock, CancelLink } from "./BoardWritePage";
+import { BtnWrapperBlock, BtnBlock, CancelBtn } from "./BoardWritePage";
 
 const BoardReadTitle = styled.div`
   width: 90%;
@@ -43,7 +43,7 @@ function BoardReadPage({ boardData }) {
   const data = [...boardData].reverse();
 
   const handleClick = () => {
-    nav("/write", {
+    nav("/react-todolist/write", {
       state: id,
     });
   };
@@ -54,7 +54,7 @@ function BoardReadPage({ boardData }) {
         method: "DELETE",
       }).then((res) => {
         window.alert("삭제되었습니다.");
-        nav("/board");
+        nav("/react-todolist/board");
         window.location.reload();
       });
     } else {
@@ -75,8 +75,8 @@ function BoardReadPage({ boardData }) {
       </BoardTemplateBlock>
 
       <BtnWrapperBlock>
-        <WriteBtnBlock onClick={handleClick}>수정하기</WriteBtnBlock>
-        <CancelLink to='/board'>뒤로가기</CancelLink>
+        <BtnBlock onClick={handleClick}>수정하기</BtnBlock>
+        <CancelBtn to='/react-todolist/board'>뒤로가기</CancelBtn>
       </BtnWrapperBlock>
     </>
   );

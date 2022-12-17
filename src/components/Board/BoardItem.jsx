@@ -14,14 +14,15 @@ const Text = styled.div`
   font-size: 20px;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  margin-bottom: 6px;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
+  border-bottom: 1px solid #38d9a9;
+  line-height: 150%;
 `;
 
 const BoardLink = styled(Link)`
+  color: black;
   cursor: pointer;
   text-decoration: none;
-  color: white;
   &:hover {
     color: #38d9a9;
   }
@@ -37,7 +38,7 @@ function BoardItem({ boardData }) {
     <BoardItemBlock>
       <Text>
         <TextNumber>{`No : ${boardData.id}`}</TextNumber>
-        <BoardLink to={`/${boardData.id}`}>{boardData.title}</BoardLink>
+        <BoardLink to={`/react-todolist/${boardData.id}`}>{boardData.title}</BoardLink>
       </Text>
     </BoardItemBlock>
   );

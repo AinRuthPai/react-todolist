@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const BoardTemplateBlock = styled.div`
-  width: 80%;
-  height: 45rem;
+  width: 65%;
+  height: 720px;
 
-  background: #393f47;
-  border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0.5);
-  color: white;
+  background: white;
 
   margin: 0 auto;
   overflow-y: auto;

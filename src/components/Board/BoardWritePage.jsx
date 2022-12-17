@@ -33,11 +33,10 @@ export const BtnWrapperBlock = styled.div`
   justify-content: center;
 `;
 
-export const WriteBtnBlock = styled.button`
+export const BtnBlock = styled.button`
   margin-bottom: 2rem;
   margin-right: 1rem;
   padding: 12px 14px;
-  border-radius: 10px;
   font-size: 18px;
   border: none;
   outline: none;
@@ -46,18 +45,9 @@ export const WriteBtnBlock = styled.button`
   cursor: pointer;
 `;
 
-export const CancelLink = styled(Link)`
+export const CancelBtn = styled(BtnBlock)`
   display: inline-block;
-  margin-bottom: 2rem;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 18px;
-  border: none;
-  outline: none;
   text-decoration: none;
-  color: white;
-  background-color: #20c997;
-  cursor: pointer;
 `;
 
 function BoardWritePage({ data }) {
@@ -85,7 +75,7 @@ function BoardWritePage({ data }) {
             return res.json();
           })
           .then((data) => {
-            nav("/board");
+            nav("/react-todolist/board");
             window.location.reload();
           })
           .catch((e) => {
@@ -127,8 +117,8 @@ function BoardWritePage({ data }) {
         <InputTextBlock type='text' placeholder='내용을 입력하세요' ref={textRef} />
       </BoardWrapperBlock>
       <BtnWrapperBlock>
-        <WriteBtnBlock onClick={onPostBoard}>작성하기</WriteBtnBlock>
-        <CancelLink to='/board'>뒤로가기</CancelLink>
+        <BtnBlock onClick={onPostBoard}>작성하기</BtnBlock>
+        <CancelBtn to='/board'>뒤로가기</CancelBtn>
       </BtnWrapperBlock>
     </>
   );

@@ -17,7 +17,6 @@ export const BoardHeadBlock = styled.div`
     margin: 0;
     margin-bottom: 8px;
     font-size: 32px;
-    color: white;
   }
 `;
 
@@ -37,7 +36,7 @@ function BoardHead() {
   return (
     <BoardHeadBlock>
       <h1>게시판</h1>
-      <StyledLink to='/write'>글 작성</StyledLink>
+      <StyledLink to='/react-todolist/write'>글 작성</StyledLink>
     </BoardHeadBlock>
   );
 }
