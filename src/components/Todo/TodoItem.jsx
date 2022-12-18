@@ -6,11 +6,10 @@ const Remove = styled.div`
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
-  margin-left: 5px;
+  margin-right: 20px;
   &:hover {
     color: #ff6b6b;
   }
-  display: none;
 `;
 
 const TodoItemBlock = styled.div`
@@ -58,10 +57,6 @@ const Text = styled.div`
 function TodoItem({ todoData }) {
   const [isDone, setIsDone] = useState(todoData.done);
 
-  // useEffect(() => {
-  //   onToggleCheck();
-  // }, [isDone]);
-
   function onRemove() {
     fetch(`http://localhost:3001/initialTodos/${todoData.id}`, {
       method: "DELETE",
@@ -92,7 +87,6 @@ function TodoItem({ todoData }) {
   return (
     <TodoItemBlock>
       <CheckCircle onClick={onToggleCheck} done={isDone}>
-        {/* {done && <MdDone />} */}
         {isDone === true ? <MdDone /> : null}
       </CheckCircle>
       <Text done={isDone}>{todoData.text}</Text>

@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 export const TemplateBlock = styled.div`
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
   width: 35%;
   height: 700px;
 

@@ -3,16 +3,11 @@
     {
       "id": 2,
       "text": "컴포넌트 스타일링하기",
-      "done": false
+      "done": true
     },
     {
       "id": 4,
       "text": "기능 구현하기",
-      "done": true
-    },
-    {
-      "id": 5,
-      "text": "시간 구현",
       "done": false
     },
     {
@@ -21,19 +16,9 @@
       "done": true
     },
     {
-      "id": 9,
-      "text": "날씨 api를 이용하여 옆에 출력",
-      "done": false
-    },
-    {
       "id": 10,
       "text": "날씨 컴포넌트 디자인",
       "done": false
-    },
-    {
-      "id": 11,
-      "text": "firebase를 이용한 구글 로그인 구현",
-      "done": true
     }
   ],
   "board": [

@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { BtnWrapperBlock, BtnBlock, CancelBtn } from "./BoardWritePage";
 
 const BoardReadTitle = styled.div`
-  width: 90%;
+  width: 80%;
   padding-top: 12px;
   padding-left: 32px;
   padding-right: 32px;
@@ -30,8 +30,8 @@ const Remove = styled.div`
 
 const BoardReadText = styled.div`
   flex: 1;
-  width: 90%;
-  margin-top: 5rem;
+  width: 80%;
+  margin-top: 32px;
   font-size: 20px;
   text-align: left;
   word-break: break-all;

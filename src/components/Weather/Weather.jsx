@@ -6,9 +6,28 @@ import { useEffect, useState } from "react";
 import { TemplateBlock } from "../Todo/TodoTemplate";
 import { WrapperBlock } from "../MainPage";
 
+const WeatherTemplate = styled(WrapperBlock)`
+  h2 {
+    font-size: 48px;
+  }
+
+  h3 {
+    font-size: 26px;
+  }
+
+  h4 {
+    font-size: 22px;
+    color: gray;
+  }
+
+  p {
+    font-size: 18px;
+  }
+`;
+
 const IconsBlock = styled.div`
-  margin: 30px;
-  font-size: 200px;
+  margin: 20px;
+  font-size: 160px;
 `;
 
 function Weather() {
@@ -40,7 +59,7 @@ function Weather() {
   }, [api.base, api.city, api.key]);
 
   return (
-    <WrapperBlock>
+    <WeatherTemplate>
       <TemplateBlock>
         <h1>
           <IconsBlock>
@@ -60,7 +79,7 @@ function Weather() {
           today : {`${data.minTemp} °C`} / {`${data.maxTemp} °C`}
         </p>
       </TemplateBlock>
-    </WrapperBlock>
+    </WeatherTemplate>
   );
 }
 

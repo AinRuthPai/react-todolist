@@ -12,20 +12,19 @@ const BoardWrapperBlock = styled.div`
 `;
 
 const InputTitleBlock = styled.input`
-  width: 60%;
-  margin-top: 2rem;
-  font-size: 22px;
-  border-radius: 8px;
+  width: 50%;
+  margin-top: 32px;
+  font-size: 20px;
+  outline: none;
 `;
 
 const InputTextBlock = styled.textarea`
-  width: 60%;
-  height: 30vw;
+  width: 50%;
+  height: 500px;
   outline: none;
-  font-size: 20px;
-  padding: 20px 10px;
-  border-radius: 8px;
-  margin: 2rem 0;
+  font-size: 18px;
+  padding: 10px 6px;
+  margin: 16px 0;
 `;
 
 export const BtnWrapperBlock = styled.div`
@@ -34,20 +33,44 @@ export const BtnWrapperBlock = styled.div`
 `;
 
 export const BtnBlock = styled.button`
-  margin-bottom: 2rem;
-  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-right: 16px;
+  padding: 10px 12px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #20c997;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: #20c997;
+  }
+`;
+
+export const CancelBtn = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-right: 16px;
   padding: 12px 14px;
   font-size: 18px;
   border: none;
   outline: none;
   color: white;
-  background-color: #1db386;
+  background-color: #20c997;
   cursor: pointer;
-`;
-
-export const CancelBtn = styled(BtnBlock)`
-  display: inline-block;
   text-decoration: none;
+
+  &:hover {
+    background-color: white;
+    color: #20c997;
+  }
 `;
 
 function BoardWritePage({ data }) {
@@ -99,7 +122,7 @@ function BoardWritePage({ data }) {
           return res.json();
         })
         .then((data) => {
-          nav("/board");
+          nav("/react-todolist/board");
           window.location.reload();
         })
         .catch((e) => {
@@ -118,7 +141,7 @@ function BoardWritePage({ data }) {
       </BoardWrapperBlock>
       <BtnWrapperBlock>
         <BtnBlock onClick={onPostBoard}>작성하기</BtnBlock>
-        <CancelBtn to='/board'>뒤로가기</CancelBtn>
+        <CancelBtn to='/react-todolist/board'>뒤로가기</CancelBtn>
       </BtnWrapperBlock>
     </>
   );

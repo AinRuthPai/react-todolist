@@ -8,13 +8,8 @@ import styled from "styled-components";
 export const WrapperBlock = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  margin-top: 3rem;
-
-  @media screen and (max-width: 1200px) {
-    flex-direction: column;
-    align-items: center;
-  }
+  justify-content: center;
+  margin-top: 48px;
 `;
 
 function MainPage({ todoData }) {

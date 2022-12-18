@@ -1,42 +1,36 @@
-import { Link } from "react-router-dom";
+import { CancelBtn } from "./BoardWritePage";
 import styled from "styled-components";
 
 export const BoardHeadBlock = styled.div`
   width: 65%;
-  padding-top: 42px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 20px;
+  padding-top: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 16px;
   text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
 
   h1 {
     margin: 0;
     margin-bottom: 8px;
-    font-size: 32px;
+    font-size: 24px;
   }
 `;
 
-const StyledLink = styled(Link)`
+export const WriteBtn = styled(CancelBtn)`
   position: absolute;
   right: 0;
-  background-color: #20c997;
-  color: white;
-  cursor: pointer;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  padding: 0.5rem;
-  text-decoration: none;
+  padding: 6px;
 `;
 
 function BoardHead() {
   return (
     <BoardHeadBlock>
-      <h1>게시판</h1>
-      <StyledLink to='/react-todolist/write'>글 작성</StyledLink>
+      <h1>BOARD</h1>
+      <WriteBtn to='/react-todolist/write'>글 작성</WriteBtn>
     </BoardHeadBlock>
   );
 }
